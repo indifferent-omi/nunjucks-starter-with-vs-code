@@ -1,0 +1,54 @@
+@mixin square($size,$radius:null){
+    min-width: $size;
+    max-width: $size;
+    min-height: $size;
+    max-height: $size;
+    border-radius: $radius;
+}
+@mixin size($sizeX,$sizeY:null){
+    min-width: $sizeX;
+    max-width: $sizeX;
+    @if($sizeY == "equal"){
+        min-height: $sizeX;
+        max-height: $sizeX;
+    } @else{
+        min-height: $sizeY;
+        max-height: $sizeY;
+    }
+}
+@mixin flexCenter($flex:flex,$justify:center,$align:center){
+    display:$flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin row($gutter:10px,$col:100%,$child:".col",$cmb:null,$default:true) {
+   @if($default){
+        display: flex;
+        flex-wrap:wrap;
+   }
+   @if ($gutter) {
+        margin-left:-$gutter;
+        margin-right: -$gutter;
+    }
+    @if ($cmb) {
+        margin-bottom: -$cmb;
+    }
+    #{$child}{
+        padding-left: $gutter;
+        padding-right: $gutter;
+        max-width: 100% /$col;
+        width: 100%;
+        margin-bottom: $cmb;
+    }
+}
+
+@mixin px($left:null,$right:$left){
+    padding-left: $left;
+    padding-right: $right;
+}
+@mixin mx($left:null,$right:$left){
+    margin-left: $left;
+    margin-right: $right;
+}
+
